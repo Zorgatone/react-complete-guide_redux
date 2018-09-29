@@ -36,6 +36,11 @@ const reducer = (state = initialState, action) => {
           }
         ]
       };
+    case "DELETE_RESULT":
+      return {
+        ...state,
+        results: state.results.filter(result => result.id !== action.value)
+      };
     default:
       return state;
   }
