@@ -13,5 +13,12 @@ export const decrement = () => ({ type: DECREMENT });
 export const add = value => ({ type: ADD, value: value });
 export const subtract = value => ({ type: SUBTRACT, value: value });
 
-export const storeResult = result => ({ type: STORE_RESULT, value: result });
+export const saveResult = result => ({ type: STORE_RESULT, value: result });
+
+export const storeResult = result => dispatch => {
+  setTimeout(() => {
+    dispatch(saveResult(result));
+  }, 2000);
+};
+
 export const deleteResult = id => ({ type: DELETE_RESULT, value: id });
