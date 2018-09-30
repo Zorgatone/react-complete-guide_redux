@@ -22,13 +22,12 @@ const logger = store => next => action => {
   return result;
 };
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
 /* eslint-disable no-underscore-dangle */
 const store = createStore(
   rootReducer /* preloadedState, */,
-  compose(
-    applyMiddleware(logger),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  )
+  composeEnhancers(applyMiddleware(logger))
 );
 /* eslint-enable */
 
