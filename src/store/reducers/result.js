@@ -1,9 +1,12 @@
 import * as actionTypes from "../actions";
 import { updateObject } from "../utility";
 
-const initialState = {
-  results: []
-};
+const initialState = { results: [] };
+
+const deleteResult = (state, action) =>
+  updateObject(state, {
+    results: state.results.filter(result => result.id !== action.value)
+  });
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -18,9 +21,7 @@ const reducer = (state = initialState, action) => {
         ]
       });
     case actionTypes.DELETE_RESULT:
-      return updateObject(state, {
-        results: state.results.filter(result => result.id !== action.value)
-      });
+      return deleteResult(state, action);
     default:
       return state;
   }
